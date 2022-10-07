@@ -26,7 +26,7 @@
 #' Normalization as Robust Method to Account for Dilution of Complex Biological Mixtures. 
 #' Application in H1 NMR Metabonomics. Anal. Chem. 78, 4281-4290 (2006).
 
-pqn = function(X, n = "median", QC) {
+pqn = function(X, n = "median", QC) { #La mediana es mas robusta porque no es sensible a los outliers
   X.norm <- matrix(nrow = nrow(X), ncol = ncol(X))
   colnames(X.norm) <- colnames(X)
   rownames(X.norm) <- rownames(X)
@@ -59,3 +59,4 @@ pqn = function(X, n = "median", QC) {
   return(X.norm)
 }
 
+##################################################################################################
