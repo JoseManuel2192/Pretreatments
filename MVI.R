@@ -16,7 +16,7 @@ impute <- function(data, methods) {
   require(missForest)
   require(pcaMethods)
   require(impute)
-  require(PEMM)
+  # require(PEMM)
   
   if (length(methods) != 1 & length(methods) != ncol(data)) {
     stop("Methods needs to be either one value or of the same length as number of columns in data.")
@@ -77,16 +77,16 @@ impute <- function(data, methods) {
     results_data[,index] <- imputed_data[,index]
     
   } 
-  if ("EM" %in% methods){
-    # expectation minimazation algorithm
-    EM_esti = PEMM::PEMM_fun(X= data, phi=1)
-    imputed_data <- EM_esti$Xhat
-    
-    index <- which(methods == "EM")
-    results_data[,index] <- imputed_data[,index]
-    
-    
-  }
+  # if ("EM" %in% methods){
+  #   # expectation minimazation algorithm
+  #   EM_esti = PEMM::PEMM_fun(X= data, phi=1)
+  #   imputed_data <- EM_esti$Xhat
+  #   
+  #   index <- which(methods == "EM")
+  #   results_data[,index] <- imputed_data[,index]
+  #   
+  #   
+  # }
   if ("BPCA" %in% methods){
     # bayesian principal component analysis
     pc <-pcaMethods:: pca(object = data, method="bpca", nPcs=10)
